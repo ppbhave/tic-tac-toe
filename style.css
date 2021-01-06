@@ -1,0 +1,136 @@
+*,*::after,*::before {
+    box-sizing:border-box;
+}
+
+h1 {
+    text-align: center;
+    margin: 0px auto;
+    display: block;
+}
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9);
+  }
+
+body{
+    margin: 0;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+}
+.cell{
+    /*width: (var(--cell-size));
+    height: (var(--cell-size)); */
+    width:100px;
+    height: 100px;
+    background-color:whitesmoke ;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3)
+{
+    border-top: none;
+}
+.cell:nth-child(3n + 1){
+    border-left:none;
+}
+.cell:nth-child(3n + 3){
+    border-right:none;
+}
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8)
+{
+    border-bottom: none;
+}
+
+.cell.x::before,
+.cell.x::after{
+    content: '';
+    width:calc(var(--mark-size)* .15);
+    height:calc(var(--mark-size));
+    background-color: black;
+}
+
+.cell.x::before{
+    transform: rotate(45deg);
+}
+.cell.x::after{
+    transform: rotate(-45deg);
+}
+
+.cell.o::before,
+.cell.o::after{
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+}
+
+.cell.o::before{
+    width:calc(var(--mark-size));
+    height:calc(var(--mark-size));
+    background-color: black;
+}
+
+.cell.o::after{
+    width:calc(var(--mark-size)* .7);
+    height:calc(var(--mark-size)*.7);
+    background-color: whitesmoke;
+}
+
+.cell.x,.cell.o{
+    cursor: not-allowed;
+}
+
+.winner-announcement{
+    display: none;
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: rgba(0,0,0,.9);
+    justify-content: center;
+    align-items: center;
+    color: antiquewhite;
+    font-size: 36px;
+    flex-direction: column;
+}
+.winner-announcement.show{
+    display:flex;
+}
+.winner-announcement button{
+    background-color: white;
+    border:1px solid black;
+    padding: .25em .25em;
+    cursor:pointer;
+    font-size: 45 px;
+}
+.winner-announcement button:hover{
+    background-color: black;
+    border:1px solid white;
+    color: white;
+}
+.instructoin{
+    display: block;
+    position:static;
+    font-weight: bold;
+    align-content: center;
+    /*justify-self:center;
+    justify-content: center; */
+    text-align:center;
+    margin: 0px auto;
+}
